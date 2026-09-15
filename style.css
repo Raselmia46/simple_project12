@@ -1,0 +1,56 @@
+body {
+    margin: 0;
+    height: 100vh;
+    background-color: #000;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+}
+
+#ui {
+    position: relative;
+    width: 0;
+    height: 0;
+    transform-style: preserve-3d;
+    animation: rotate 20s infinite linear;
+}
+
+.love {
+    position: absolute;
+    transform-style: preserve-3d;
+}
+
+/* JavaScript থেকে পাওয়া --i ভ্যারিয়েবল দিয়ে প্রতিটি কণার পজিশন ও রোটেশন নির্ধারণ */
+.love_horizontal {
+    transform: rotateY(calc(var(--i) * 0.5deg)) translateZ(250px);
+    transform-style: preserve-3d;
+}
+
+.love_vertical {
+    transform: rotateX(calc(var(--i) * 0.2deg));
+    transform-style: preserve-3d;
+}
+
+.love_word {
+    color: #ff3377;
+    font-family: sans-serif;
+    font-size: 11px;
+    text-shadow: 0 0 10px #ff3377, 0 0 20px #ff3377;
+    white-space: nowrap;
+    user-select: none;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+/* পুরো হার্ট ঘোরানোর অ্যানিমেশন */
+@keyframes rotate {
+    0% { transform: rotateY(0deg) rotateX(10deg); }
+    100% { transform: rotateY(360deg) rotateX(10deg); }
+}
+
+/* কণাগুলোর হালকা স্পন্দনের (pulse) জন্য */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.4; }
+    50% { transform: scale(1.1); opacity: 1; }
+}
